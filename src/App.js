@@ -17,15 +17,32 @@ class App extends Component {
   }
 
   heightChange(height) {
-    this.setState({height}, () => {
-      console.log(this.state)
-    })
+    this.setState({height}, this.setBMI)
   }
 
   weightChange(weight) {
-    this.setState({weight}, () => {
-      console.log(this.state)
+    this.setState({weight}, this.setBMI)
+  }
+
+  setBMI() {
+    let bmi = ((this.state.weight / this.state.height / this.state.height) * 10000).toFixed(2)
+    this.setState({
+      bmi,
+      bmiClass: this.getBMIClass(bmi)
     })
+    console.log(this.state)
+  }
+
+  getBMIClass(bmi) {
+    if(bmi < 18.5) {
+      return "Underweight"
+    } else if(bmi >= 18.5 && bmi <= 24.9) {
+      return "Normal"
+    } else if(bmi >= 25 && bmi <= 29.9) {
+      return "Overweight"
+    } else if(bmi >= 30) {
+      return "Obese"
+    }
   }
 
   render() {
