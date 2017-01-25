@@ -21,7 +21,10 @@ class Output extends Component {
     const bmiClass = this.props.data.bmiClass
     return (
       <div className="output">
-        {weight}
+        <h3>{height}</h3>
+        <h3>{weight}lbs</h3>
+        <h3>{bmi}</h3>
+        <h3 className={(this.props.data.bmiClass === 'Obese' ? 'danger' : '')}>{bmiClass} {(this.props.data.bmiClass === 'Obese' ? <a href="https://www.loseit.com/" target="_blank">What can I do?</a> : '')}</h3>
       </div>
     )
   }
